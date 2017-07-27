@@ -24,3 +24,12 @@ CREATE TABLE posts (
   updated_at timestamp with time zone NOT NULL DEFAULT NOW()
 );
 
+DROP TABLE IF EXISTS comments;
+
+CREATE TABLE comments (
+  id SERIAL,
+  body VARCHAR(510) DEFAULT NULL,
+  created_at timestamp with time zone NOT NULL DEFAULT NOW(),
+  updated_at timestamp with time zone NOT NULL DEFAULT NOW()
+);
+
