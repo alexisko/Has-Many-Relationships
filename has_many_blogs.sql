@@ -33,3 +33,8 @@ CREATE TABLE comments (
   updated_at timestamp with time zone NOT NULL DEFAULT NOW()
 );
 
+ALTER TABLE users ADD PRIMARY KEY(id);
+
+ALTER TABLE posts ADD PRIMARY KEY(id);
+
+ALTER TABLE comments ADD PRIMARY KEY(id);
