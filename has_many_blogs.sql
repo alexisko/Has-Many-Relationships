@@ -1,6 +1,12 @@
+DROP DATABASE IF EXISTS has_many_blogs;
+
+DROP USER IF EXISTS has_many_user;
+
 CREATE USER has_many_user;
 
 CREATE DATABASE has_many_blogs WITH OWNER has_many_user;
+
+\c has_many_blogs has_many_user;
 
 DROP TABLE IF EXISTS users;
 
@@ -22,7 +28,7 @@ CREATE TABLE posts (
   content TEXT DEFAULT NULL,
   created_at timestamp with time zone NOT NULL DEFAULT NOW(),
   updated_at timestamp with time zone NOT NULL DEFAULT NOW(),
-  user_id INTEGER NOT NULL REFERENCES users(id)
+  users_id INTEGER NOT NULL REFERENCES users(id)
 );
 
 DROP TABLE IF EXISTS comments;
@@ -32,6 +38,8 @@ CREATE TABLE comments (
   body VARCHAR(510) DEFAULT NULL,
   created_at timestamp with time zone NOT NULL DEFAULT NOW(),
   updated_at timestamp with time zone NOT NULL DEFAULT NOW(),
-  user_id INTEGER NOT NULL REFERENCES users(id),
-  post_id INTEGER NULL NULL REFERENCES posts(id)
+  users_id INTEGER NOT NULL REFERENCES users(id),
+  posts_id INTEGER NULL NULL REFERENCES posts(id)
 );
+
+\i scripts/blog_data.sql;
